@@ -1,0 +1,79 @@
+<html>
+    
+    <h1>Private Chat</h1>
+
+    <script>
+        
+        // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyA85okZdA9v_XAa9BgJJ2EOdUEbL09k0uY",
+        authDomain: "fir-test-bcb6d.firebaseapp.com",
+        databaseURL: "https://fir-test-bcb6d.firebaseio.com",
+        projectId: "fir-test-bcb6d",
+        storageBucket: "fir-test-bcb6d.appspot.com",
+        messagingSenderId: "976121809263"
+        };
+    firebase.initializeApp(config);
+        
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user == null) {
+            alert("Not logged in.");
+            return;
+        } else {
+            userId = user.uid;
+            name = user.displayName;
+            imageUrl = user.photoURL;
+            email = user.email;
+            var user = firebase.auth().currentUser;
+        }
+        
+function listAllUsers(nextPageToken) {
+  // List batch of users, 1000 at a time.
+  admin.auth().listUsers(1000, nextPageToken)
+    .then(function(listUsersResult) {
+      listUsersResult.users.forEach(function(userRecord) {
+        console.log('user', userRecord.toJSON());
+      });
+      if (listUsersResult.pageToken) {
+        // List next batch of users.
+        listAllUsers(listUsersResult.pageToken);
+      }
+    })
+    .catch(function(error) {
+      console.log('Error listing users:', error);
+    });
+}
+// Start listing users from the beginning, 1000 at a time.
+listAllUsers();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
