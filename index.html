@@ -121,21 +121,21 @@
             for (var u in data) {
                 for (var t in data[u]) {
                     mytab = mytab + "<tr>";
-                    var date = new Date(data[u][t].time);
-                    var time = date.toString();                    
+                    var time = data[u][t].time;
+                    var date = data[u][t].date;                    
                     if (data[u][t].img != "") {
-                        mytab = mytab + "<td><img src='" + users[u].profile_picture + "' width='50px'></td>";
-                        mytab = mytab + "<td>" + users[u].email + "</td>";
+                        mytab = mytab + "<td><img src='" + users[u].profile_picture + "' width='50px'>" + "<br>" + "<br>" + "<button id=" + "'follow " + users[u].username + "' onclick='follow(this.id)'>Follow This User" + "</button>" + "</td>";
+                        mytab = mytab + "<td>" + users[u].username + "</td>";
                         mytab = mytab + "<td>" + data[u][t].tweet + "</td>";
-                        mytab = mytab + "<td>" + time + "<br><img src='" + data[u][t].img + "' width='300px'></td>";
-                        mytab = mytab + "<td><p>Like this tweet</p>" + "<button id=" + t + " onclick=" + "like(this.id)" + ">Like</button>" + "<p>Likes: </p>" + "<p id='" + t + "likes'" + "'>" + data[u][t].likes + "</p>" + "</td>";
+                        mytab = mytab + "<td>" + "<p>" + time + "</p>" + "<p>" + date + "</p>" + "<br><img src='" + data[u][t].img + "' width='300px'></td>";
+                        mytab = mytab + "<td><p>Like this tweet</p>" + "<button id='" + u + "/" + t + "' onclick=" + "like(this.id)" + ">Like</button>" + "<p>Likes: </p>" + "<p id='" + u + "/" + t + "likes'" + "'>" + data[u][t].likes + "</p>" + "</td>";
                          
                     } else {
-                        mytab = mytab + "<td><img src='" + users[u].profile_picture + "' width='50px'></td>";
-                        mytab = mytab + "<td>" + users[u].email + "</td>";
+                        mytab = mytab + "<td><img src='" + users[u].profile_picture + "' width='50px'>" + "<br>" + "<br>" + "<button id=" + "'follow " + users[u].username + "' onclick='follow(this.id)'>Follow This User" + "</button>" + "</td>";
+                        mytab = mytab + "<td>" + users[u].username + "</td>";
                         mytab = mytab + "<td>" + data[u][t].tweet + "</td>";
-                        mytab = mytab + "<td>" + time + "</td>";
-                        mytab = mytab + "<td><p>Like this tweet</p>" + "<button id=" + t + " onclick=" + "like(this.id)" + ">Like</button>" + "<p>Likes: </p>" + "<p id='" + t + "likes'" + "'>" + data[u][t].likes + "</p>" + "</td>";
+                        mytab = mytab + "<td>" + "<p>" + time + "</p>" + "<p>" + date + "</p>" + "</td>";
+                        mytab = mytab + "<td><p>Like this tweet</p>" + "<button id='" + u + "/" + t + "' onclick=" + "like(this.id)" + ">Like</button>" + "<p>Likes: </p>" + "<p id='" + u + "/" + t + "likes'" + "'>" + data[u][t].likes + "</p>" + "</td>";
                     } 
                     mytab = mytab + "</tr>";
                 }   
@@ -154,9 +154,36 @@
             var twitimg = document.getElementById("imgTest");
             var nameValue = twitdoc.value;
             var imgValue = twitimg.innerHTML;
+            var d = new Date();
+            var dayofweek = d.getDay();
+            console.log(dayofweek);
+            var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var dayofmonth = d.getDate();
+            var monthnumber = d.getMonth();
+            var monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var year = d.getFullYear();
+            var thedate = weekdays[dayofweek] + ", " + monthnames[monthnumber] + " " + dayofmonth + ", " + year;
+            console.log(thedate);
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            if (hours <= 12) {
+                if (minutes < 10) {
+                    var time = hours + ":" + "0" + minutes + " AM";
+                }
+                var time = hours + ":" + minutes + " AM";
+            }
+            if (hours > 12) {
+                if (minutes < 10) {
+                    var time = (hours - 12) + ":" + "0" + minutes + " PM";
+                }
+                var time = (hours - 12) + ":" + minutes + " PM";
+            }
+        
+            console.log(hours);
+            console.log(time);
             var js_time = Date.now();
             //var numberoffollowers = 2;
-            var tweetid = firebase.database().ref('tweets/' + userId + "/").push({tweet: nameValue, time: js_time, img: imgValue, likes: 0});
+            var tweetid = firebase.database().ref('tweets/' + userId + "/").push({tweet: nameValue, time: time, date: thedate, img: imgValue, likes: 0});
             //var followers = firebase.database().ref('users/' + userId + "/").push({followers: numberoffollowers});
             twitdoc.value = "";
             writeUserData(userId, name, email, imageUrl);
@@ -185,27 +212,37 @@
         }
         
         function like(t) {
-            alert(t);
+            alert('You liked this tweet');
             console.log(t);
             
-                                     
+            var y = firebase.database().ref('/tweets/' + t);
+            var parent = y.parent;
+            console.log('Parent: ' + parent);
+            var res = String(parent);
+            console.log(res);
+            var goal = res.substring((res.length - 28), res.length);
+            console.log(goal);
+                        
             var oldlikes = document.getElementById(t + "likes").innerHTML;
             console.log(oldlikes);
-            firebase.database().ref('/tweets/' + userId + "/" + t).once('value', function(snapshot) {
+            firebase.database().ref('/tweets/'+ t).once('value', function(snapshot) {
+               console.log("/tweets/" + t);
                console.log(snapshot.val());
                var oldlikenumber = snapshot.val().likes;
                console.log(oldlikenumber);
                var newlikes = oldlikenumber + 1;
-                    var tweetid = firebase.database().ref('tweets/' + userId + "/" + t).update({likes: newlikes});
+                    var tweetid = firebase.database().ref('tweets/' + t).update({likes: newlikes});
                         console.log(newlikes);
                 document.getElementById(t + "likes").innerHTML = newlikes;
                     });
-            
 
-            /* console.log('liked tweetnumber' + tweetnumber);
-            alert('liked tweetnumber' + tweetnumber);
-            document.getElementById('tweetnumber' + tweetnumber).innerHTML = "Likes: " + 1;*/
         }
+        
+        function follow(follower) {
+            alert ("Followed " + name);  
+            document.getElementById('follow ' + name).innerHTML = "Unfollow This User";
+        }
+
         
         function signin() {
             console.log("Signing in");
@@ -221,6 +258,31 @@
             });
         }
         
+        function getnumberofusers() {
+            firebase.database().ref('/users').once('value').then(function(snapshot) { 
+                var numberofusers = snapshot.numChildren();
+                document.getElementById('numberofusers').innerHTML = "Number of Users: " + numberofusers;
+            });
+        }
+
+        
+        var userArray = [];
+        getallusers();
+        
+        function getallusers() {
+            
+            firebase.database().ref('/users').once('value').then(function(snapshot) { 
+                var numberofusers = snapshot.numChildren();
+                console.log('Number of Current Users: ' + numberofusers);
+                var users = (snapshot.val());
+                    userArray.push(users);
+                    console.log(userArray[0]);
+            });
+            getnumberofusers();
+        }
+        
+
+        
 
     
     </script>
@@ -229,8 +291,6 @@
         <button onclick="signin()">Sign in</button>
         <button onclick="signout()">Sign out</button>
         <br>
-        <p>Step 1: delete your existing Firebase Realtime database</p>
-        <a href="fbtest.json" target="_target">Step 2: replace JSON Firebase rules for database</a><br>
     
         <form>
             Tweet:<br>
@@ -244,6 +304,12 @@
     <div id="mytweets"></div>
     <div id="mydata"></div>
     <div id="myphoto"></div>
+    <br>
+    <p id="numberofusers"></p>
+    <br>
+    <div style="width:300px;">
+        <input id="myInput" type="text" name="myCountry" placeholder="Search a User!">
+    </div>
         
         
         
