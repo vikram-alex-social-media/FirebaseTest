@@ -216,10 +216,12 @@
             
             firebase.database().ref('tweets/' + t + "/" + 'userswholiked' + "/" + userId).once('value', function(snapshot) {
                 var likebool = snapshot.val();
+                console.log(likebool);
                 if (likebool = "true") {
+                    var golike = false;
                     alert('Already Liked');
                 }
-                else var golike = true;
+                else (golike = true);
             
                 
             if (golike) {
