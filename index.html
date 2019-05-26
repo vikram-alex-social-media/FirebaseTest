@@ -23,10 +23,7 @@
   };
   firebase.initializeApp(config);
         
-  firebase.database().ref('/users' + userId).once('value', function (snapshot) {
-      var namedisplayed = snapshot.val().username;
-      console.log('Name Displayed' + namedisplayed);
-  });
+
                 
         // Check to see if you are logged in
         firebase.auth().onAuthStateChanged(function(user) {
@@ -35,6 +32,10 @@
                 return;
             } else {
                 userId = user.uid;
+                firebase.database().ref('/users' + userId).once('value', function (snapshot) {
+                    var namedisplayed = snapshot.val().username;
+                    console.log('Name Displayed' + namedisplayed);
+                });
                 name = namedisplayed
                 imageUrl = user.photoURL;
                 email = user.email;
