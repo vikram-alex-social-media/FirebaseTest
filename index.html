@@ -8,10 +8,6 @@
         th, td {
             border-bottom: 1px solid #ddd;
         }
-        
-        .ifchangeusername {
-            display: none;
-        }
     
     </style>
     <script>
@@ -378,11 +374,17 @@
         }
         
         function changeusernameshow() {
-            document.getElementsByClassName('ifchangeusername').style.display = "block";
+            document.getElementById('newusernameinstruct').style.display = "block";
+            document.getElementById('newusernameinput').style.display = "block";
+            document.getElementById('submitnewusername').style.display = "block";
+            document.getElementById('closenewusername').style.display = "block";
         }
         
         function closeusername() {
-            document.getElementsByClassName('ifchangeusername').style.display = "none";
+            document.getElementById('newusernameinstruct').style.display = "none";
+            document.getElementById('newusernameinput').style.display = "none";
+            document.getElementById('submitnewusername').style.display = "none";
+            document.getElementById('closenewusername').style.display = "none";
         }
         
         function changeusername() {
