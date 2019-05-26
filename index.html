@@ -385,7 +385,7 @@
             var newusername = document.getElementById('newusernameinput').value;
             document.getElementById('mydata').innerHTML = newusername;
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
-                  
+            document.getElementsByClassName('ifchangeusername').style.display = "none";      
         }
         
 
@@ -419,13 +419,13 @@
         <br>
         <p class="ifchangeusername" id="newusernameinstruct" style="display: none;">Enter New Username:</p>
         <br>
-        <input class="ifchangeusername" type="text" id="newusernameinput" type="text" name="newusername" value="" placeholder="New Username ...">
+        <input class="ifchangeusername" type="text" id="newusernameinput" type="text" name="newusername" value="" placeholder="New Username ..." style="display: none;">
         <br>
         <button class="ifchangeusername" id="submitnewusername" style="display: none;" onclick="changeusername();">Submit</button>
         <br>
-        <button class="ifchangeusername" id="closenewusername" style="display: none;" onclick="closeusername();">Submit</button>
+        <button class="ifchangeusername" id="closenewusername" style="display: none;" onclick="closeusername();">Close</button>
         <br>
-        <button id="changebioshow" onclick='changebioshow()'></button>
+        <button id="changebioshow" onclick='changebioshow()'>Change Biography</button>
         <br>
     
         
