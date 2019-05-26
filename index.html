@@ -55,7 +55,7 @@
                 mydiv.innerHTML = name
                 myphotodiv = document.getElementById("myphoto");
                 myphotodiv.innerHTML = "<img src='" + imageUrl + "'/>";
-
+                
                 firebase.database().ref('/tweets').once('value').then(function(snapshot) {
                     var data = (snapshot.val());
                     if (data == null) {
@@ -105,8 +105,11 @@
                         email: email,
                         profile_picture : imageUrl
                     }); 
+                    
                  }                                      
             });
+            var userfollowernumber = firebase.database().ref('users/' + userId + "/").push({followers: 0});
+            var userfollowingnumber = firebase.database().ref('users/' + userId + "/").push({following: 0});
         }
         
         
