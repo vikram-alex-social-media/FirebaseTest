@@ -218,7 +218,9 @@
                 var likesarezero = snapshot.val().likes;
                 if (likesarezero = 0) {
                     var golike = true;
-                }
+                } else {
+                    
+                
                 firebase.database().ref('tweets/' + t + "/" + 'userswholiked' + "/" + userId).once('value', function(snapshot) {
                 console.log('tweets/' + t + "/" + 'userswholiked' + "/" + userId);
                 var likebool = snapshot.val();
@@ -257,8 +259,9 @@
             }
         });
         }); 
-        
     }
+        
+}
         
         function follow(follower) {
             alert ('follow ' + follower);  
