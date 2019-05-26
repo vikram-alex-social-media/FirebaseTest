@@ -51,7 +51,7 @@
                 
                 // write data to document
                 mydiv = document.getElementById("mydata");
-                mydiv.innerHTML = name
+                mydiv.innerHTML = name;
                 myphotodiv = document.getElementById("myphoto");
                 myphotodiv.innerHTML = "<img src='" + imageUrl + "'/>";
                 
@@ -185,6 +185,39 @@
                 else var time = (hours - 12) + ":" + minutes + " PM";
                 console.log(time);
             }
+            /*  if (hours = 0) {
+                if (minutes = 0) {
+                    var time = "12" + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
+                    time = "12" + ":" + "0" + minutes + " AM";
+                    console.log(time);
+                }
+                else time = "12" + ":" + minutes + " AM";
+                console.log(time);
+            }
+            if (hours <= 12 && hours > 0) {
+                if (minutes = 0) {
+                    time = hours + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
+                    time = hours + ":" + "0" + minutes + " AM";
+                    console.log(time);
+                }
+                else time = hours + ":" + minutes + " AM";
+                console.log(time);
+            }
+            if (hours > 12) {
+                if (minutes = 0) {
+                    time = (hours - 12) + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
+                    time = (hours - 12) + ":" + "0" + minutes + " PM";
+                    console.log(time);
+                }
+                else time = (hours - 12) + ":" + minutes + " PM";
+                console.log("Time" + time);
+            } */
         
             console.log(hours);
             console.log(time);
@@ -340,6 +373,21 @@
             alert('This is private chat');
         }
         
+        function changeusernameshow() {
+            document.getElementsByClassName('ifchangeusername').style.display = "block";
+        }
+        
+        function closeusername() {
+            document.getElementsByClassName('ifchangeusername').style.display = "none";
+        }
+        
+        function changeusername() {
+            var newusername = document.getElementById('newusernameinput').value;
+            document.getElementById('mydata').innerHTML = newusername;
+            var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername);
+                  
+        }
+        
 
         
 
@@ -365,10 +413,22 @@
     <div id="mytweets"></div>
     <br>
     <div id="mydata"></div>
-    <br>
-    <button id="changeusername">Change Username</button>
-    <br>
-    <br>
+        
+        <br>
+        <button id="changeusernameshow" onclick='changeusernameshow()'>Change Username</button>
+        <br>
+        <p class="ifchangeusername" id="newusernameinstruct" style="display: none;">Enter New Username:</p>
+        <br>
+        <input class="ifchangeusername" type="text" id="newusernameinput" type="text" name="newusername" value="" placeholder="New Username ...">
+        <br>
+        <button class="ifchangeusername" id="submitnewusername" style="display: none;" onclick="changeusername();">Submit</button>
+        <br>
+        <button class="ifchangeusername" id="closenewusername" style="display: none;" onclick="closeusername();">Submit</button>
+        <br>
+        <button id="changebioshow" onclick='changebioshow()'></button>
+        <br>
+    
+        
     <div id="myphoto"></div>
     <br>
     <div id="myprofileinfo"></div>
