@@ -221,7 +221,7 @@
                 if (likebool = "true") {
                     alert('Already Liked');
                 }
-            }
+            });
             var y = firebase.database().ref('/tweets/' + t);
             var parent = y.parent;
             console.log('Parent: ' + parent);
