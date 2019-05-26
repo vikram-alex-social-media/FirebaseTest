@@ -215,6 +215,7 @@
         function like(t) {
             
             firebase.database().ref('tweets/' + t + "/" + 'userswholiked' + "/" + userId).once('value', function(snapshot) {
+                console.log('tweets/' + t + "/" + 'userswholiked' + "/" + userId);
                 var likebool = snapshot.val();
                 console.log(likebool);
                 if (likebool = "true") {
