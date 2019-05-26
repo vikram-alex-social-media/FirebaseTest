@@ -342,8 +342,8 @@
 
     <body>
         <button onclick="signin()">Sign in</button>
-        <br>
         <button onclick="signout()">Sign out</button>
+        
         <br>
     
         <form>
@@ -351,8 +351,9 @@
             <textarea id="twit" type="text" name="thetweet" cols="100" rows="4"></textarea>
         </form> 
         <button type="button" onclick="tweet()">Submit</button>
-    
-        <br><input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
+        <br>
+        <br>
+        <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
         <div id="imgTest" style="display:none;"></div>
         <br>
     <div id="mytweets"></div>
