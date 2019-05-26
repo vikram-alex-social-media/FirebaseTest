@@ -220,7 +220,7 @@
                     alert('Already Liked');
                 }
                 else var golike = true;
-            });
+            
                 
             if (golike) {
                 alert('You liked this tweet');
@@ -248,7 +248,8 @@
                 document.getElementById(t + "likes").innerHTML = newlikes;
                 });
             }
-        }
+        });
+    }
         
         function follow(follower) {
             alert ('follow ' + follower);  
