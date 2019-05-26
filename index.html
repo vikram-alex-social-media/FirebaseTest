@@ -104,12 +104,11 @@
                         username: name,
                         email: email,
                         profile_picture : imageUrl
-                    }); 
-                    
+                    });  
                  }                                      
             });
-            var userfollowernumber = firebase.database().ref('users/' + userId + "/").push({followers: 0});
-            var userfollowingnumber = firebase.database().ref('users/' + userId + "/").push({following: 0});
+            //var userfollowernumber = firebase.database().ref('users/' + userId + "/").push({followers: 0});
+            //var userfollowingnumber = firebase.database().ref('users/' + userId + "/").push({following: 0});
         }
         
         
@@ -125,7 +124,9 @@
                 for (var t in data[u]) {
                     mytab = mytab + "<tr>";
                     var time = data[u][t].time;
-                    var date = data[u][t].date;                    
+                    var date = data[u][t].date;
+                    console.log(users[u].profile_picture);
+                    console.log(users[u].username);
                     if (data[u][t].img != "") {
                         mytab = mytab + "<td><img src='" + users[u].profile_picture + "' width='50px'>" + "<br>" + "<br>" + "<button id=" + "'follow " + users[u].username + "' onclick='follow(this.id)'>Follow This User" + "</button>" + "</td>";
                         mytab = mytab + "<td>" + users[u].username + "</td>";
