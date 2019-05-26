@@ -169,20 +169,37 @@
             var minutes = d.getMinutes();
             console.log(hours);
             console.log(minutes);
-            if (hours <= 12) {
-                if (minutes < 10) {
+            if (hours = 0) {
+                if (minutes = 0) {
+                    var time = "12" + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
+                    var time = "12" + ":" + "0" + minutes + " AM";
+                    console.log(time);
+                }
+                else var time = "12" + ":" + minutes + " AM";
+                console.log(time);
+            }
+            if (hours <= 12 && hours > 0) {
+                if (minutes = 0) {
+                    var time = hours + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
                     var time = hours + ":" + "0" + minutes + " AM";
                     console.log(time);
                 }
-                var time = hours + ":" + minutes + " AM";
+                else var time = hours + ":" + minutes + " AM";
                 console.log(time);
             }
             if (hours > 12) {
-                if (minutes < 10) {
+                if (minutes = 0) {
+                    var time = (hours - 12) + ":" + "00" + " AM";
+                }
+                else if (minutes < 10) {
                     var time = (hours - 12) + ":" + "0" + minutes + " PM";
                     console.log(time);
                 }
-                var time = (hours - 12) + ":" + minutes + " PM";
+                else var time = (hours - 12) + ":" + minutes + " PM";
                 console.log(time);
             }
         
