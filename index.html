@@ -34,7 +34,6 @@
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
-                console.log(user.additionalUserInfo.isNewUser);
 
                 user.sendEmailVerification().then(function() {
                 // Email sent.
@@ -233,7 +232,8 @@
                var oldlikenumber = snapshot.val().likes;
                console.log(oldlikenumber);
                var newlikes = oldlikenumber + 1;
-                    var tweetid = firebase.database().ref('tweets/' + t).update({likes: newlikes});
+               var tweetid = firebase.database().ref('tweets/' + t).update({likes: newlikes});
+               var newliker = firebase.database().ref('tweets/' + t + "/" + 'userswholiked').push({userId: true});
                         console.log(newlikes);
                 document.getElementById(t + "likes").innerHTML = newlikes;
                     });
