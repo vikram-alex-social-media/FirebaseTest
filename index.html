@@ -174,33 +174,33 @@
                     var time = "12" + ":" + "00" + " AM";
                 }
                 else if (minutes < 10) {
-                    var time = "12" + ":" + "0" + minutes + " AM";
+                    time = "12" + ":" + "0" + minutes + " AM";
                     console.log(time);
                 }
-                else var time = "12" + ":" + minutes + " AM";
+                else time = "12" + ":" + minutes + " AM";
                 console.log(time);
             }
             if (hours <= 12 && hours > 0) {
                 if (minutes = 0) {
-                    var time = hours + ":" + "00" + " AM";
+                    time = hours + ":" + "00" + " AM";
                 }
                 else if (minutes < 10) {
-                    var time = hours + ":" + "0" + minutes + " AM";
+                    time = hours + ":" + "0" + minutes + " AM";
                     console.log(time);
                 }
-                else var time = hours + ":" + minutes + " AM";
+                else time = hours + ":" + minutes + " AM";
                 console.log(time);
             }
             if (hours > 12) {
                 if (minutes = 0) {
-                    var time = (hours - 12) + ":" + "00" + " AM";
+                    time = (hours - 12) + ":" + "00" + " AM";
                 }
                 else if (minutes < 10) {
-                    var time = (hours - 12) + ":" + "0" + minutes + " PM";
+                    time = (hours - 12) + ":" + "0" + minutes + " PM";
                     console.log(time);
                 }
-                else var time = (hours - 12) + ":" + minutes + " PM";
-                console.log(time);
+                else time = (hours - 12) + ":" + minutes + " PM";
+                console.log("Time" + time);
             }
         
             console.log(hours);
