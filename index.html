@@ -393,7 +393,7 @@
             document.getElementById('mydata').innerHTML = newusername;
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
             user.updateprofile ({
-                displayName: newusername;
+                displayName: newusername
             }).then(function() {
                 //Update Successful
             }).catch(function(error) {
