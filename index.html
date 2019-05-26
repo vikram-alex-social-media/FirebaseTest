@@ -34,7 +34,7 @@
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
-                var newuser = user.getAdditionalUserInfo
+                console.log(result.additionalUserInfo.isNewUser);
 
                 user.sendEmailVerification().then(function() {
                 // Email sent.
@@ -107,8 +107,6 @@
                     });  
                  }                                      
             });
-            //var userfollowernumber = firebase.database().ref('users/' + userId + "/").push({followers: 0});
-            //var userfollowingnumber = firebase.database().ref('users/' + userId + "/").push({following: 0});
         }
         
         
@@ -313,6 +311,7 @@
     <div id="mytweets"></div>
     <div id="mydata"></div>
     <div id="myphoto"></div>
+    <div id="myprofileinfo"></div>
     <br>
     <p id="numberofusers"></p>
     <br>
