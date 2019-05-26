@@ -382,6 +382,7 @@
         }
         
         function changeusername() {
+            alert('Changing Username');
             var newusername = document.getElementById('newusernameinput').value;
             document.getElementById('mydata').innerHTML = newusername;
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
