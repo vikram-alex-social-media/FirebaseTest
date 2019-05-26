@@ -243,8 +243,8 @@
         }
         
         function follow(follower) {
-            alert ("Followed " + name);  
-            document.getElementsByClassName('follow' + name).innerHTML = "Unfollow This User";
+            alert ('follow ' + follower);  
+            document.getElementsByClassName('follow ' + follower).innerHTML = "Unfollow This User";
         }
 
         
@@ -283,6 +283,11 @@
                     console.log(userArray[0]);
             });
             getnumberofusers();
+        }
+        
+        function privatechat() {
+            //var private = firebase.database().ref('privatechat/' + userId + ", " + chatwithId + "/").push({tweet: nameValue, time: time, date: thedate, img: imgValue, likes: 0});
+            alert('This is private chat');
         }
         
 
