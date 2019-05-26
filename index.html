@@ -34,7 +34,7 @@
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
-                console.log(result.additionalUserInfo.isNewUser);
+                console.log(user.additionalUserInfo.isNewUser);
 
                 user.sendEmailVerification().then(function() {
                 // Email sent.
