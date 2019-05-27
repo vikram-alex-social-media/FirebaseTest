@@ -51,6 +51,7 @@
                 
                 // write data to document
                 firebase.database().ref('/users' + userId).once('value').then(function(snapshot) { 
+                console.log('/users' + userId);
                 var fakeusername = snapshot.val().username;
                 
                 mydiv = document.getElementById("mydata");
