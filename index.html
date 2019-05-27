@@ -172,7 +172,13 @@
             var minutes = d.getMinutes();
             console.log(hours);
             console.log(minutes);
-            if (hours <= 12) {
+            if (hours = 0) {
+                if (minutes < 10) {
+                    var time = "12:0" + minutes + " AM";
+                }
+                else var time = "12:" + minutes + " AM";
+            }
+            if (hours <= 12 && hours > 0) {
                 if (minutes < 10) {
                     var time = hours + ":" + "0" + minutes + " AM";
                     console.log(time);
