@@ -425,6 +425,7 @@
             firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
             var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
+            });
             closebio();  
         }
         
