@@ -397,6 +397,33 @@
             closeusername();  
         }
         
+        function changebioshow() {
+            document.getElementById('newbioinstruct').style.display = "block";
+            document.getElementById('newbioinput').style.display = "block";
+            document.getElementById('submitnewbio').style.display = "block";
+            document.getElementById('closenewbio').style.display = "block";
+        }
+        
+        function closebio() {
+            document.getElementById('newbioinstruct').style.display = "none";
+            document.getElementById('newbioinput').style.display = "none";
+            document.getElementById('submitnewbio').style.display = "none";
+            document.getElementById('closenewbio').style.display = "none";
+        }
+        
+        function changeusername() {
+            alert('Changing Bio');
+            var newbio = document.getElementById('newbioinput').value;
+            document.getElementById('mybio').innerHTML = newbio;
+            var updatedusername = firebase.database().ref('users/' + userId).push({bio: newbio});
+
+            closeusername();  
+        }
+        
+        
+        
+        
+        
         
     
     </script>
@@ -444,7 +471,7 @@
         <br>
         <button id="submitnewbio" style="display: none;" onclick="changebio();">Submit</button>
         <br>
-        <button id="closenewbio" style="display: none;" onclick="closeusername();">Close</button>
+        <button id="closenewbio" style="display: none;" onclick="closebio();">Close</button>
         <br>
         
         
