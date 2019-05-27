@@ -425,7 +425,7 @@
         function changebio() {
             alert('Changing Bio');
             var newbio = document.getElementById('newbioinput').value;
-            document.getElementById('mybio').innerHTML = newbio;
+            document.getElementById('mybio').innerHTML = "About Me: " + newbio;
             var updatedusername = firebase.database().ref('users/' + userId).update({bio: newbio});
 
             closebio();  
