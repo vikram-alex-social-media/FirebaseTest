@@ -427,7 +427,7 @@
                     var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
                 }
                 var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
-            });
+            }
             closebio();  
         }
         
@@ -473,8 +473,6 @@
         <button id="changebioshow" onclick='changebioshow()'>Change Biography</button>
         <br>
         <p id="newbioinstruct" style="display: none;">Enter New Bio:</p>
-        <br>
-        <input type="text" id="newbioinput" type="text" name="newusername" value="" placeholder="New Username ..." style="display: none;">
     
         
     <div id="myphoto"></div>
