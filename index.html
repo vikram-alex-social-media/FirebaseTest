@@ -48,11 +48,14 @@
                 //writeUserData(userId, name, email, imageUrl);
                 // moved to tweet function
                 
-
+                firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) { 
+                var fakeusername = snapshot.val().username;
+                console.log('/users/' + userId);
+                
+                mydiv = document.getElementById("mydata");
+                mydiv.innerHTML = fakeusername;
                 
                 // write data to document
-                mydiv = document.getElementById("mydata");
-                mydiv.innerHTML = name;
                 myphotodiv = document.getElementById("myphoto");
                 myphotodiv.innerHTML = "<img src='" + imageUrl + "'/>";
                 
@@ -74,7 +77,7 @@
                       //updatetweets(data);
                     }
                 });
-                
+                });
             } // end user null check
         }); // end check auth state
         
@@ -108,17 +111,6 @@
                  }                                      
             });
         }
-        
-        var userId = firebase.auth().currentUser;
-        console.log(userId);
-        
-        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) { 
-            console.log('/users/' + userId);
-            var fakeusername = snapshot.val().username;
-                
-            mydiv = document.getElementById("mydata");
-            mydiv.innerHTML = fakeusername;
-        });
         
         
         function updatetweets(data) {
