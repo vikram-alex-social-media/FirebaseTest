@@ -423,11 +423,8 @@
             var newbio = document.getElementById('newbio').value;
             document.getElementById('mybio').innerHTML = "About Me: " + newusername;
             firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
-                if (snapshot.exists() = false) {
-                    var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
-                }
-                var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
-            }
+            var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
+            var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
             closebio();  
         }
         
@@ -472,7 +469,6 @@
         <br>
         <button id="changebioshow" onclick='changebioshow()'>Change Biography</button>
         <br>
-        <p id="newbioinstruct" style="display: none;">Enter New Bio:</p>
     
         
     <div id="myphoto"></div>
