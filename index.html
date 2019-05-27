@@ -34,7 +34,6 @@
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
-
                 user.sendEmailVerification().then(function() {
                 // Email sent.
                 }).catch(function(error) {
@@ -55,7 +54,7 @@
                 var fakeusername = snapshot.val().username;
                 
                 mydiv = document.getElementById("mydata");
-                mydiv.innerHTML = "Username: " + fakeusername;
+                mydiv.innerHTML = fakeusername;
                 console.log(fakeusername);
                 console.log(snapshot.val().username);
                 myphotodiv = document.getElementById("myphoto");
@@ -85,7 +84,6 @@
         }); // end check auth state
         
         function encodeImageFileAsURL() {
-
             var filesSelected = document.getElementById("inputFileToLoad").files;
             if (filesSelected.length > 0) {
                 var fileToLoad = filesSelected[0];
@@ -124,7 +122,6 @@
             var mytab = "<table id='tweettable'>";
             users = data[1]; // put on top, because changed data - not good coding change later
             data = data[0];
-
             
             for (var u in data) {
                 for (var t in data[u]) {
@@ -338,7 +335,6 @@
             alert ('follow ' + follower);  
             document.getElementsByClassName('follow ' + follower).innerHTML = "Unfollow This User";
         }
-
         
         function signin() {
             console.log("Signing in");
@@ -360,7 +356,6 @@
                 document.getElementById('numberofusers').innerHTML = "Number of Users: " + numberofusers;
             });
         }
-
         
         var userArray = [];
         getallusers();
@@ -399,41 +394,12 @@
         function changeusername() {
             alert('Changing Username');
             var newusername = document.getElementById('newusernameinput').value;
-            document.getElementById('mydata').innerHTML = "Username: " + newusername;
+            document.getElementById('mydata').innerHTML = newusername;
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
             closeusername();  
         }
         
-        function changebioshow() {
-            document.getElementById('newbioinstruct').style.display = "block";
-            document.getElementById('newbioinput').style.display = "block";
-            document.getElementById('submitnewbio').style.display = "block";
-            document.getElementById('closenewbio').style.display = "block";
-        }
         
-        function closebio() {
-            document.getElementById('newbioinstruct').style.display = "none";
-            document.getElementById('newbioinput').style.display = "none";
-            document.getElementById('submitnewbio').style.display = "none";
-            document.getElementById('closenewbio').style.display = "none";
-        }
-        
-        function changebio() {
-            alert('Changing Bio');
-            var newbio = document.getElementById('newbio').value;
-            document.getElementById('mybio').innerHTML = "About Me: " + newusername;
-            firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
-            var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
-            var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
-            });
-            closebio();  
-        }
-        
-        
-        
-
-        
-
     
     </script>
 
