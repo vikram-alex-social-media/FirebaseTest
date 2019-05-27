@@ -420,15 +420,14 @@
         
         function changebio() {
             alert('Changing Bio');
-            var newbio = document.getElementById('newbioinput').value;
-            document.getElementById('mybio').innerHTML = "About Me: " + newbio;
+            var newbio = document.getElementById('newbio').value;
+            document.getElementById('mybio').innerHTML = "About Me: " + newusername;
             firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
-                if (snapshot.exists()) {
-                    var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
-                } else {
+                if (snapshot.exists() = false) {
                     var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
                 }
-            });
+                var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
+            }
             closebio();  
         }
         
@@ -471,25 +470,18 @@
         <br>
         <button class="ifchangeusername" id="closenewusername" style="display: none;" onclick="closeusername();">Close</button>
         <br>
-        <p id="mybio"></p>
-        <br>
         <button id="changebioshow" onclick='changebioshow()'>Change Biography</button>
         <br>
         <p id="newbioinstruct" style="display: none;">Enter New Bio:</p>
         <br>
-        <input type="text" id="newbioinput" type="text" name="newbioname" value="" placeholder="Describe Yourself ..." style="display: none;">
-        <br>
-        <button id="submitnewbio" style="display: none;" onclick="changebio();">Submit</button>
-        <br>
-        <button class="ifchangeusername" id="closenewbio" style="display: none;" onclick="closebio();">Close</button>
-        <br>
-        <br>
+        <input type="text" id="newbioinput" type="text" name="newusername" value="" placeholder="New Username ..." style="display: none;">
+    
         
     <div id="myphoto"></div>
     <br>
     <div id="myprofileinfo"></div>
     <br>
-    <p id="numberofusers">Add Bio</p>
+    <p id="numberofusers"></p>
     <br>
     <div style="width:300px;">
         <input id="myInput" type="text" name="myCountry" placeholder="Search a User!">
