@@ -423,10 +423,11 @@
             var newbio = document.getElementById('newbioinput').value;
             document.getElementById('mybio').innerHTML = "About Me: " + newbio;
             firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
-                if (snapshot.exists() = false) {
+                if (snapshot.exists()) {
+                    var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
+                } else {
                     var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
                 }
-                var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
             });
             closebio();  
         }
