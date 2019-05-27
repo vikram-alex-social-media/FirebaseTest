@@ -71,6 +71,7 @@
                            dataarray = [data,userdata]
                            console.log(dataarray)
                            updatetweets(dataarray); 
+                           updatebio();
                         }
                       });
                       //console.log(data)
@@ -149,6 +150,14 @@
             var mytdiv = document.getElementById("mytweets");
             //mytdiv.innerHTML = mylist;
             mytdiv.innerHTML = mytab;
+        }
+        
+        function updatebio() {
+            firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
+                var bio = snapshot.val().bio;
+                console.log(bio);
+                document.getElementById('mybio').innerHTML = "About Me: " + bio;
+            });
         }
         
         // write tweets to firebase
@@ -248,10 +257,7 @@
                     }
                 });
             
-            firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
-                var bio = snapshot.val().bio;
-                document.getElementById('mybio').innerHTML = bio;
-            });
+
             
             
             
