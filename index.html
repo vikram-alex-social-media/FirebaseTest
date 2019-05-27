@@ -22,11 +22,6 @@
     messagingSenderId: "976121809263"
   };
   firebase.initializeApp(config);
-        
-  firebase.database().ref('/users' + userId).once('value', function (snapshot) {
-      var usernamefirebase = snapshot.val().username;
-      console.log('Name Displayed' + namedisplayed);
-  
                 
         // Check to see if you are logged in
         firebase.auth().onAuthStateChanged(function(user) {
@@ -35,8 +30,7 @@
                 return;
             } else {
                 userId = user.uid;
-                name = usernamefirebase;
-                console.log
+                name = user.displayName;
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
@@ -401,13 +395,14 @@
             user.updateprofile ({
                 displayName: newusername
             }).then(function() {
+                console.log("Update successful");
                 //Update Successful
             }).catch(function(error) {
+                console.log("Error");
                 //An error occurred
             });
             closeusername();  
         }
-});
         
 
         
