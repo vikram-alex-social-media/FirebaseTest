@@ -50,7 +50,7 @@
                 // moved to tweet function
                 
                 // write data to document
-                firebase.database().ref('/users').once('value').then(function(snapshot) { 
+                firebase.database().ref('/users' + userId).once('value').then(function(snapshot) { 
                 var fakeusername = snapshot.val().username;
                 
                 mydiv = document.getElementById("mydata");
@@ -78,7 +78,7 @@
                       //updatetweets(data);
                     }
                 });
-                });
+                
             } // end user null check
         }); // end check auth state
         
