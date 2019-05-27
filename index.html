@@ -48,6 +48,13 @@
                 //writeUserData(userId, name, email, imageUrl);
                 // moved to tweet function
                 
+                firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) { 
+                var fakeusername = snapshot.val().username;
+                console.log('/users/' + userId);
+                
+                mydiv = document.getElementById("mydata");
+                mydiv.innerHTML = fakeusername;
+                
                 // write data to document
                 mydiv = document.getElementById("mydata");
                 mydiv.innerHTML = name;
@@ -71,6 +78,7 @@
                       //console.log(data)
                       //updatetweets(data);
                     }
+                });
                 });
             } // end user null check
         }); // end check auth state
