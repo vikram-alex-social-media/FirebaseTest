@@ -421,7 +421,7 @@
         function changebio() {
             alert('Changing Bio');
             var newbio = document.getElementById('newbio').value;
-            document.getElementById('mybio').innerHTML = "About Me: " + newusername;
+            document.getElementById('mybio').innerHTML = "About Me: " + newbio;
             firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
                 if (snapshot.exists() = false) {
                     var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
