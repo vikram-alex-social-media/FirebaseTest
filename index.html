@@ -55,7 +55,7 @@
                 var fakeusername = snapshot.val().username;
                 
                 mydiv = document.getElementById("mydata");
-                mydiv.innerHTML = fakeusername;
+                mydiv.innerHTML = "Username: " + fakeusername;
                 console.log(fakeusername);
                 console.log(snapshot.val().username);
                 myphotodiv = document.getElementById("myphoto");
@@ -399,10 +399,39 @@
         function changeusername() {
             alert('Changing Username');
             var newusername = document.getElementById('newusernameinput').value;
-            document.getElementById('mydata').innerHTML = newusername;
+            document.getElementById('mydata').innerHTML = "Username: " + newusername;
             var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
             closeusername();  
         }
+        
+        function changebioshow() {
+            document.getElementById('newbioinstruct').style.display = "block";
+            document.getElementById('newbioinput').style.display = "block";
+            document.getElementById('submitnewbio').style.display = "block";
+            document.getElementById('closenewbio').style.display = "block";
+        }
+        
+        function closebio() {
+            document.getElementById('newbioinstruct').style.display = "none";
+            document.getElementById('newbioinput').style.display = "none";
+            document.getElementById('submitnewbio').style.display = "none";
+            document.getElementById('closenewbio').style.display = "none";
+        }
+        
+        function changebio() {
+            alert('Changing Bio');
+            var newbio = document.getElementById('newbio').value;
+            document.getElementById('mybio').innerHTML = "About Me: " + newusername;
+            firebase.database().ref('/users/' + userId).once('value', function(snapshot) {
+                if (snapshot.exists() = false) {
+                    var updatedusername = firebase.database().ref('users/' + userId).push({username: newusername});
+                }
+                var updatedusername = firebase.database().ref('users/' + userId).update({username: newusername});
+            }
+            closebio();  
+        }
+        
+        
         
 
         
@@ -443,7 +472,15 @@
         <br>
         <button id="changebioshow" onclick='changebioshow()'>Change Biography</button>
         <br>
-    
+        <p id="newbioinstruct" style="display: none;">Enter New Bio:</p>
+        <br>
+        <input type="text" id="newbioinput" type="text" name="newbioname" value="" placeholder="Describe Yourself ..." style="display: none;">
+        <br>
+        <button id="submitnewbio" style="display: none;" onclick="changebio();">Submit</button>
+        <br>
+        <button class="ifchangeusername" id="closebio" style="display: none;" onclick="closebio();">Close</button>
+        <br>
+        <br>
         
     <div id="myphoto"></div>
     <br>
