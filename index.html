@@ -109,6 +109,9 @@
             });
         }
         
+        var userId = firebase.auth().currentUser;
+        console.log(userId);
+        
         firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) { 
             console.log('/users/' + userId);
             var fakeusername = snapshot.val().username;
