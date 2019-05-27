@@ -30,6 +30,7 @@
                 return;
             } else {
                 userId = user.uid;
+                name = user.displayName;
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
@@ -74,6 +75,7 @@
                       //console.log(data)
                       //updatetweets(data);
                     }
+                });
                 });
             } // end user null check
         }); // end check auth state
