@@ -30,7 +30,6 @@
                 return;
             } else {
                 userId = user.uid;
-                name = user.displayName;
                 imageUrl = user.photoURL;
                 email = user.email;
                 var user = firebase.auth().currentUser;
@@ -50,8 +49,11 @@
                 // moved to tweet function
                 
                 // write data to document
+                firebase.database().ref('/users').once('value').then(function(snapshot) { 
+                var fakeusername = snapshot.val().username;
+                
                 mydiv = document.getElementById("mydata");
-                mydiv.innerHTML = name;
+                mydiv.innerHTML = fakeusername;
                 myphotodiv = document.getElementById("myphoto");
                 myphotodiv.innerHTML = "<img src='" + imageUrl + "'/>";
                 
@@ -98,6 +100,7 @@
         // write user data
         function writeUserData(userId, name, email, imageUrl) {
             firebase.database().ref('users/' + userId).once('value',    function(snapshot) {
+            var name = snapshot.val().username;
                  if (!snapshot.exists()) {
                     firebase.database().ref('users/' + userId).set({
                         username: name,
